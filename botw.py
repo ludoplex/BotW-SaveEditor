@@ -8,6 +8,7 @@ This script modifies the 0th save slot, which doesn't seem to relate to any part
 entry in the game menu.
 """
 
+
 import struct
 import _nx
 import sys
@@ -24,14 +25,11 @@ if user_id is None:
 
 _nx.fs_mount_savedata("save", TITLE_ID, user_id)
 
-gamedata = open("save:/0/game_data.sav", "rb+")
-
-"""
+with open("save:/0/game_data.sav", "rb+") as gamedata:
+    """
 some code to be added here
 """
 
-gamedata.flush()
-gamedata.close()
-
+    gamedata.flush()
 _nx.fsdev_commit_device("save")
 _nx.fsdev_unmount_device("save")
